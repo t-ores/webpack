@@ -4,6 +4,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const isDev = process.env.NODE_ENV === 'development'
+
 module.exports = {
     context: path.resolve(__dirname,'src'),
     mode:'development',
@@ -52,15 +54,19 @@ module.exports = {
     ],
     module:{
         rules:[
+            // {
+            //     test: /\.css$/i,
+            //     use: [{
+            //         loader: MiniCssExtractPlugin.loader,
+            //         options: {
+            //             reloadAll: true,
+            //             hmr: isDev
+            //         },
+            //     }, 'css-loader'],
+            // },
             {
                 test: /\.css$/i,
-                use: [{
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        reloadAll: true,
-                        hmr: true
-                    },
-                }, 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
                 test: /\.(png|jpeg|jpg|svg|gif)$/,
