@@ -6,3 +6,7 @@
 /.idea
 /dist
 /node_modules
+.firebaserc
+.firebase
+firebase.json
+stats.json
